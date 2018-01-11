@@ -24,18 +24,22 @@ public class EmployeeOrderServiceImpl implements EmployeeOrderService {
         employeeOrderDAO.addEmployeeOrder(employeeOrder);
     }
 
+    @Transactional
     public void deleteOrderOperationByOrderId(int orderId) {
         employeeOrderDAO.deleteOrderOperationByOrderId(orderId);
     }
 
+    @Transactional
     public void updateOperationEmployeeId(int employeeId, Integer newEmployeeId) {
         employeeOrderDAO.updateOperationEmployeeId(employeeId, newEmployeeId);
     }
 
+    @Transactional
     public List<Integer> getOrderIdsByEmployeeIds(List<Integer> employeeIds) {
         return employeeOrderDAO.getOrderIdsByEmployeeIds(employeeIds);
     }
 
+    @Transactional
     public void deleteOperationByEmployeeId(int employeeId) {
         employeeOrderDAO.deleteOperationByEmployeeId(employeeId);
     }

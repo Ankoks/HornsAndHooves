@@ -35,26 +35,32 @@ public class OrderServiceImpl implements OrderService {
         orderDAO.deleteOrder(orderId);
     }
 
+    @Transactional
     public Order getOrder(int orderId) {
         return orderDAO.getOrder(orderId);
     }
 
+    @Transactional
     public Order updateOrder(Order order) {
         return orderDAO.updateOrder(order);
     }
 
+    @Transactional
     public Integer getLastOrder() {
         return orderDAO.getLastOrder();
     }
 
+    @Transactional
     public List<Order> getOrdersByIds(List<Integer> orderIds) {
         return orderDAO.getOrdersByIds(orderIds);
     }
 
+    @Transactional
     public List<Order> getNonCompleteOrders() {
         return orderDAO.getNonCompleteOrders();
     }
 
+    @Transactional
     public void updateOrderStatus(int orderId, OrderStatus status) {
         orderDAO.updateOrderStatus(orderId, status);
     }

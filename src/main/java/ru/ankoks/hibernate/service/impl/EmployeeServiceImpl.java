@@ -36,26 +36,32 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeDAO.deleteEmployee(employeeId);
     }
 
+    @Transactional
     public Employee getEmployee(int empid) {
         return employeeDAO.getEmployee(empid);
     }
 
+    @Transactional
     public Employee updateEmployee(Employee employee) {
         return employeeDAO.updateEmployee(employee);
     }
 
+    @Transactional
     public Integer getRandomFreeEmployeeId() {
         return employeeDAO.getRandomFreeEmployeeId();
     }
 
+    @Transactional
     public void updateEmployeeWorkerStatus(Integer employeeId) {
         employeeDAO.updateEmployeeWorkerStatus(employeeId);
     }
 
+    @Transactional
     public List<Integer> getEmployeeIdsByDepartment(FurnitureDepartment furnitureDepartment) {
         return employeeDAO.getEmployeeIdsByDepartment(furnitureDepartment);
     }
 
+    @Transactional
     public List<EmployeeOrderDto> getEmployeeOrders() {
         return employeeDAO.getEmployeeOrders();
     }
