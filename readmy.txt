@@ -1,0 +1,58 @@
+КОММЕНТАРИИ:
+1. Ввод даты происходит без учета времени, поэтому при указании оставшегося срока используются только дни
+2. Реализовано при использовании Spring MVC, REST тоже сделал, в качестве примера, но MVC удобнее смотреть и отлаживать
+3. Заказ назначается на любого свободного сотрудника, если свободного сотрудника нет, заказ остается висеть в статусе "Новый"
+4. При удалении мастера заказы автоматиески переназначаются, при условии что есть свободные мастера
+5.
+
+
+--                                          BASE MIGRATION:
+-- Table: trade.employee
+
+-- DROP TABLE trade.employee;
+
+CREATE TABLE trade.employee (
+  id INTEGER PRIMARY KEY NOT NULL,
+  department CHARACTER VARYING(255),
+  name CHARACTER VARYING(255),
+  is_free BOOLEAN
+);
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE trade.employee
+  OWNER TO admin;
+
+
+-- Table: trade.employee_orders
+
+-- DROP TABLE trade.employee_orders;
+
+CREATE TABLE trade.employee_orders (
+  id INTEGER PRIMARY KEY NOT NULL,
+  employee_id INTEGER,
+  order_id INTEGER
+);
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE trade.employee_orders
+  OWNER TO postgres;
+
+
+-- Table: trade.order_furniture
+
+-- DROP TABLE trade.order_furniture;
+
+CREATE TABLE trade.order_furniture (
+  id INTEGER PRIMARY KEY NOT NULL,
+  name CHARACTER VARYING(255),
+  order_date TIMESTAMP WITHOUT TIME ZONE,
+  item INTEGER,
+  status TEXT
+);
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE trade.order_furniture
+  OWNER TO admin;
