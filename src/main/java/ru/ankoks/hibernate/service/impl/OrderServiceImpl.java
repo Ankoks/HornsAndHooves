@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.ankoks.hibernate.dao.OrderDAO;
 import ru.ankoks.hibernate.service.OrderService;
 import ru.ankoks.model.Order;
+import ru.ankoks.model.OrderStatus;
 
 import java.util.List;
 
@@ -18,7 +19,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderDAO orderDAO;
-
 
     @Transactional
     public void addOrder(Order order) {
@@ -53,5 +53,9 @@ public class OrderServiceImpl implements OrderService {
 
     public List<Order> getNonCompleteOrders() {
         return orderDAO.getNonCompleteOrders();
+    }
+
+    public void updateOrderStatus(int orderId, OrderStatus status) {
+        orderDAO.updateOrderStatus(orderId, status);
     }
 }

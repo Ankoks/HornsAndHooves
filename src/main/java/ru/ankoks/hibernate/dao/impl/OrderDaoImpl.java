@@ -69,4 +69,13 @@ public class OrderDaoImpl implements OrderDAO {
 
         return criteria.list();
     }
+
+    public void updateOrderStatus(int orderId, OrderStatus status) {
+        SQLQuery sqlQuery = sessionFactory.getCurrentSession().createSQLQuery("UPDATE order_furniture SET status = :status where id = :id");
+
+        sqlQuery.setParameter("status", status.getStatusName());
+        sqlQuery.setParameter("id", orderId);
+
+        sqlQuery.executeUpdate();
+    }
 }

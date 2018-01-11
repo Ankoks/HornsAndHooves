@@ -35,7 +35,6 @@ public class OrderController {
     @RequestMapping(value = "/orderList")
     public ModelAndView listOrder(ModelAndView model) throws IOException {
         List<Order> listOrder = orderService.getAllOrders();
-        model.addObject("itemList", FurnitureItem.ALL);
         model.addObject("listOrder", listOrder);
         model.setViewName("orderList");
         return model;
@@ -44,6 +43,7 @@ public class OrderController {
     @RequestMapping(value = "/newOrder", method = RequestMethod.GET)
     public ModelAndView newContact(ModelAndView model) {
         Order order = new Order();
+        model.addObject("itemList", FurnitureItem.ALL);
         model.addObject("order", order);
         model.setViewName("orderForm");
         return model;
@@ -97,6 +97,15 @@ public class OrderController {
         model.addObject("order", order);
 
         return model;
+    }
+
+    @RequestMapping(value = "/finishOrder", method = RequestMethod.GET)
+    public ModelAndView finishOrder(HttpServletRequest request) {
+        int orderId = Integer.parseInt(request.getParameter("id"));
+
+        orderService.updateOrderStatus(orderId, OrderStatus.COMPLETE);
+
+        return new ModelAndView("redirect:/orderList");
     }
 
     @RequestMapping(value = "/orderListByDepartment")

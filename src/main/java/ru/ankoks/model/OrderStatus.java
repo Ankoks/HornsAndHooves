@@ -18,4 +18,17 @@ public enum OrderStatus {
     public String getTitle() {
         return title;
     }
+
+    public String getStatusName() {
+        switch (this) {
+            case NEW:
+                return "NEW";
+            case STARTED:
+                return "STARTED";
+            case COMPLETE:
+                return "COMPLETE";
+            default:
+                return "NEW";
+        }
+    }
 }

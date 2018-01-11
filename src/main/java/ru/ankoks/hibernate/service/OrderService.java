@@ -1,6 +1,7 @@
 package ru.ankoks.hibernate.service;
 
 import ru.ankoks.model.Order;
+import ru.ankoks.model.OrderStatus;
 
 import java.util.List;
 
@@ -23,4 +24,6 @@ public interface OrderService {
     List<Order> getOrdersByIds(List<Integer> orderIds);
 
     List<Order> getNonCompleteOrders();
+
+    void updateOrderStatus(int orderId, OrderStatus status);
 }

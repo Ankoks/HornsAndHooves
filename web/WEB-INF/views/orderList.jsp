@@ -36,7 +36,8 @@
         <td>${order.status.title}</td>
         <td>${order.completeDays}</td>
         <td><a href="editOrder?id=${order.id}">Edit</a>
-          <a href="deleteOrder?id=${order.id}">Delete</a></td>
+          <a href="deleteOrder?id=${order.id}">Delete</a>
+          <a href="finishOrder?id=${order.id}">Finish order</a></td>
       </tr>
     </c:forEach>
   </table>

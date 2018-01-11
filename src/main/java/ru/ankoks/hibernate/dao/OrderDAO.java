@@ -1,6 +1,7 @@
 package ru.ankoks.hibernate.dao;
 
 import ru.ankoks.model.Order;
+import ru.ankoks.model.OrderStatus;
 
 import java.util.List;
 
@@ -24,4 +25,6 @@ public interface OrderDAO {
     List<Order> getOrdersByIds(List<Integer> orderIds);
 
     List<Order> getNonCompleteOrders();
+
+    void updateOrderStatus(int orderId, OrderStatus status);
 }
