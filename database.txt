@@ -1,0 +1,50 @@
+-- BASE MIGRATION:
+-- Table: trade.employee
+
+-- DROP TABLE trade.employee;
+
+CREATE TABLE trade.employee (
+  id INTEGER PRIMARY KEY NOT NULL,
+  department CHARACTER VARYING(255),
+  name CHARACTER VARYING(255),
+  is_free BOOLEAN
+);
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE trade.employee
+  OWNER TO admin;
+
+
+-- Table: trade.employee_orders
+
+-- DROP TABLE trade.employee_orders;
+
+CREATE TABLE trade.employee_orders (
+  id INTEGER PRIMARY KEY NOT NULL,
+  employee_id INTEGER,
+  order_id INTEGER
+);
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE trade.employee_orders
+  OWNER TO postgres;
+
+
+-- Table: trade.order_furniture
+
+-- DROP TABLE trade.order_furniture;
+
+CREATE TABLE trade.order_furniture (
+  id INTEGER PRIMARY KEY NOT NULL,
+  name CHARACTER VARYING(255),
+  order_date TIMESTAMP WITHOUT TIME ZONE,
+  item INTEGER,
+  status TEXT
+);
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE trade.order_furniture
+  OWNER TO admin;
