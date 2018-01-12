@@ -52,7 +52,7 @@ public class OrderController {
     @RequestMapping(value = "/saveOrder", method = RequestMethod.POST)
     public ModelAndView saveOrder(@ModelAttribute Order order) {
 
-        Integer randomFreeEmployeeId = employeeService.getRandomFreeEmployeeId();
+        Integer randomFreeEmployeeId = employeeService.getRandomFreeEmployeeIdInDep(order.getItem());
 
         if (randomFreeEmployeeId != null) {
             order.setStatus(OrderStatus.STARTED);

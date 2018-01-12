@@ -2,6 +2,7 @@ package ru.ankoks.hibernate.dao;
 
 import ru.ankoks.model.Employee;
 import ru.ankoks.model.FurnitureDepartment;
+import ru.ankoks.model.FurnitureItem;
 import ru.ankoks.model.dto.EmployeeOrderDto;
 
 import java.util.List;
@@ -11,15 +12,15 @@ import java.util.List;
  */
 public interface EmployeeDAO {
 
-    public void addEmployee(Employee employee);
+    void addEmployee(Employee employee);
 
-    public List<Employee> getAllEmployees();
+    List<Employee> getAllEmployees();
 
-    public void deleteEmployee(Integer employeeId);
+    void deleteEmployee(Integer employeeId);
 
-    public Employee updateEmployee(Employee employee);
+    Employee updateEmployee(Employee employee);
 
-    public Employee getEmployee(int employeeid);
+    Employee getEmployee(int employeeid);
 
     Integer getRandomFreeEmployeeId();
 
@@ -28,4 +29,6 @@ public interface EmployeeDAO {
     List getEmployeeIdsByDepartment(FurnitureDepartment furnitureDepartment);
 
     List<EmployeeOrderDto> getEmployeeOrders();
+
+    Integer getRandomFreeEmployeeIdInDep(FurnitureItem item);
 }

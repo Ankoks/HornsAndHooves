@@ -2,6 +2,7 @@ package ru.ankoks.hibernate.service;
 
 import ru.ankoks.model.Employee;
 import ru.ankoks.model.FurnitureDepartment;
+import ru.ankoks.model.FurnitureItem;
 import ru.ankoks.model.dto.EmployeeOrderDto;
 
 import java.util.List;
@@ -10,21 +11,23 @@ import java.util.List;
  * Created by AntonK on 09.01.2018.
  */
 public interface EmployeeService {
-    public void addEmployee(Employee employee);
+    void addEmployee(Employee employee);
 
-    public List<Employee> getAllEmployees();
+    List<Employee> getAllEmployees();
 
-    public void deleteEmployee(Integer employeeId);
+    void deleteEmployee(Integer employeeId);
 
-    public Employee getEmployee(int employeeid);
+    Employee getEmployee(int employeeid);
 
-    public Employee updateEmployee(Employee employee);
+    Employee updateEmployee(Employee employee);
 
-    public Integer getRandomFreeEmployeeId();
+    Integer getRandomFreeEmployeeId();
 
-    public void updateEmployeeWorkerStatus(Integer employeeId);
+    void updateEmployeeWorkerStatus(Integer employeeId);
 
     List<Integer> getEmployeeIdsByDepartment(FurnitureDepartment furnitureDepartment);
 
     List<EmployeeOrderDto> getEmployeeOrders();
+
+    Integer getRandomFreeEmployeeIdInDep(FurnitureItem item);
 }

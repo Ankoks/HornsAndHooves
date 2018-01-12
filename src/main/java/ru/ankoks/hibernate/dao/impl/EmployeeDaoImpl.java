@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import ru.ankoks.hibernate.dao.EmployeeDAO;
 import ru.ankoks.model.Employee;
 import ru.ankoks.model.FurnitureDepartment;
+import ru.ankoks.model.FurnitureItem;
 import ru.ankoks.model.dto.EmployeeOrderDto;
 
 import java.util.List;
@@ -100,6 +101,36 @@ public class EmployeeDaoImpl implements EmployeeDAO {
         sqlQuery.setResultTransformer(Transformers.aliasToBean(EmployeeOrderDto.class));
 
         return sqlQuery.list();
+    }
+
+    public Integer getRandomFreeEmployeeIdInDep(FurnitureItem item) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Employee.class);
+
+        criteria.setProjection(Projections.id());
+
+        criteria.add(Restrictions.eq("free", Boolean.TRUE));
+
+        switch (item) {
+            case BED:
+            case SOFA:
+            case ARMCHAIR:
+                criteria.add(Restrictions.eq("department", FurnitureDepartment.SOFT));
+                break;
+            case WARDROBE:
+            case CURBSTONE:
+            case SHELF:
+                criteria.add(Restrictions.eq("department", FurnitureDepartment.STORAGE));
+                break;
+            case TABLE:
+            case CHAIR:
+            case ROCKING_CHAIR:
+                criteria.add(Restrictions.eq("department", FurnitureDepartment.OFFICE));
+                break;
+        }
+
+        List list = criteria.list();
+
+        return list.isEmpty() ? null : (Integer) list.get(0);
     }
 
     public Employee updateEmployee(Employee employee) {

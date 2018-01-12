@@ -7,6 +7,7 @@ import ru.ankoks.hibernate.dao.EmployeeDAO;
 import ru.ankoks.hibernate.service.EmployeeService;
 import ru.ankoks.model.Employee;
 import ru.ankoks.model.FurnitureDepartment;
+import ru.ankoks.model.FurnitureItem;
 import ru.ankoks.model.dto.EmployeeOrderDto;
 
 import java.util.List;
@@ -64,6 +65,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     public List<EmployeeOrderDto> getEmployeeOrders() {
         return employeeDAO.getEmployeeOrders();
+    }
+
+    public Integer getRandomFreeEmployeeIdInDep(FurnitureItem item) {
+        return employeeDAO.getRandomFreeEmployeeIdInDep(item);
     }
 
 }
